@@ -2,8 +2,10 @@ import { Body, Controller, Get, Param, ParseIntPipe, Patch, Post, Delete } from 
 import { Brand } from "src/core/models/brand.model";
 import { CreateBrandDto, UpdateBrandDto } from "src/core/dtos/brand.dto";
 import { BrandUseCases } from "src/usecases/brand.usecases";
+import { ApiTags } from "@nestjs/swagger";
 
 @Controller("/api/brands")
+@ApiTags('brands')
 export class BrandController {
     constructor(private readonly brandUsecases: BrandUseCases){
     }
