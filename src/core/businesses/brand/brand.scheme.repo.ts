@@ -1,4 +1,4 @@
-import { Brand } from '../models/brand.model';
+import { Brand } from './brand.model';
 
 export abstract class IBrandRepo {
   abstract getAll(): Promise<Brand[]>;

@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, ParseIntPipe, Patch, Post, Delete } from "@nestjs/common";
-import { Brand } from "src/core/models/brand.model";
-import { CreateBrandDto, UpdateBrandDto } from "src/core/dtos/brand.dto";
+import { Brand } from "src/core/businesses/brand/brand.model";
+import { CreateBrandDto, UpdateBrandDto } from "src/core/businesses/brand/brand.dto";
 import { BrandUseCases } from "src/usecases/brand.usecases";
 import { ApiTags } from "@nestjs/swagger";
 

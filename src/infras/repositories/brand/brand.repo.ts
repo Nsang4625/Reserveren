@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { IBrandRepo } from 'src/core/repositories/brand.scheme.repo';
+import { IBrandRepo } from 'src/core/businesses/brand/brand.scheme.repo';
 import { BrandEntity } from './brand.entity';
 import { Repository } from 'typeorm';
-import { Brand } from 'src/core/models/brand.model';
+import { Brand } from 'src/core/businesses/brand/brand.model';
 
 @Injectable()
 export class BrandRepository implements IBrandRepo {
