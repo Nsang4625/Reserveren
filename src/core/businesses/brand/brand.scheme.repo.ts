@@ -1,6 +1,6 @@
 import { Brand } from './brand.model';
 
-export abstract class IBrandRepo {
+export abstract class IBrandRepository {
   abstract getAll(): Promise<Brand[]>;
   abstract getOne(id: number): Promise<Brand>;
   abstract create(brand: Brand): Promise<Brand>;

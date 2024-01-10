@@ -1,9 +1,9 @@
 import { Brand } from 'src/core/businesses/brand/brand.model';
-import { IBrandRepo } from 'src/core/businesses/brand/brand.scheme.repo';
+import { IBrandRepository } from 'src/core/businesses/brand/brand.scheme.repo';
 import { CreateBrandDto, UpdateBrandDto } from '../core/businesses/brand/brand.dto';
 
 export class BrandUseCases {
-    constructor(private brandRepository: IBrandRepo) {}
+    constructor(private brandRepository: IBrandRepository) {}
     async getAll(): Promise<Brand[]> {
         return await this.brandRepository.getAll();
     }
