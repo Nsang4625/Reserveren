@@ -3,6 +3,7 @@ import { IUserRepo } from "src/core/businesses/user/user.schema.repo";
 import { SignUpLocalDto } from "src/core/contracts/auth/auth.dto";
 import { IAuthService } from "src/core/contracts/auth/auth.services";
 import {User} from "../core/businesses/user/user.model";
+import { UpdatePasswordDto } from "src/core/businesses/user/user.dto";
 
 export class AuthUseCases {
     constructor(
@@ -40,5 +41,17 @@ export class AuthUseCases {
         return {
             accessToken: await this.authService.generateAccessToken(user.id)
         };
+    }
+    async updatePassword(updatePasswordDto: UpdatePasswordDto){
+        const user = await this.userRepository.findByEmail(updatePasswordDto.email);
+        if(!user){
+            throw new ConflictException(`User ${updatePasswordDto.email} does not exist`);
+        }
+        if(!await this.authService.compareHashedContent(updatePasswordDto.password, user.password)){
+            throw new ConflictException(`Password is not correct`);
+        }
+        const hashedPassword = await this.authService.hashedContent(updatePasswordDto.newPassword);
+        await this.userRepository.update(user.id, {password: hashedPassword});
+        return this.authService.generateAccessAndRefreshToken(user.id);
     }
 }

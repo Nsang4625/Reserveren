@@ -35,5 +35,7 @@ export class AuthServices implements IAuthService{
             refreshToken: await this.generateRefreshToken(id)
         }
     }
-    
+    async compareHashedContent(content: string, hashedContent: string): Promise<boolean> {
+        return bcrypt.compare(content, hashedContent);
+    }
 }

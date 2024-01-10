@@ -4,6 +4,7 @@ import { LocalAuthGuard } from 'src/infras/guards/local-auth.guards';
 import { AuthUseCases } from 'src/usecases/auth.usecases';
 import {GoogleAuthGuard} from "../../infras/guards/google-auth.guards";
 import {JwtRefreshTokenGuards} from "../../infras/guards/jwt-refresh-auth.guards";
+import { UpdatePasswordDto } from 'src/core/businesses/user/user.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -18,6 +19,10 @@ export class AuthController {
     async logInLocal(@Req() request: any){
         const { user } = request;
         return this.authUseCases.logInWithLocalStrategy(user.id);
+    }
+    @Post('/updatePassword')
+    async updatePassword(@Body() updatePasswordDto: UpdatePasswordDto){
+        return this.authUseCases.updatePassword(updatePasswordDto);
     }
     @Get('google/login')
     @UseGuards(GoogleAuthGuard)

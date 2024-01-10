@@ -7,11 +7,14 @@ import { JwtAccessTokenStrategy } from "./strategies/jwt.strategy";
 import { GoogleStrategy } from "./strategies/google.strategy";
 import { UserRepoModule } from "../../repositories/user/user.repo.module";
 import {JwtRefreshTokenStrategy} from "./strategies/jwt-refresh.strategy";
+import { AuthStrategiesService } from './auth-strategies.services';
 
 
 @Module({
     imports: [PassportModule, JwtModule.register({}), UserRepoModule],
-    providers: [AuthServices, LocalStrategy, JwtAccessTokenStrategy, JwtRefreshTokenStrategy, GoogleStrategy],
+    providers: [AuthServices,
+         LocalStrategy, JwtAccessTokenStrategy, JwtRefreshTokenStrategy, 
+         GoogleStrategy, AuthStrategiesService],
     exports: [AuthServices]
 })
 export class AuthServiceModule {};

@@ -9,4 +9,5 @@ export abstract class IAuthService {
         accessToken: string,
         refreshToken: string
     }>
+    abstract compareHashedContent(content: string, hashedContent: string): Promise<boolean>;
 }
