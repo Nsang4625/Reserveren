@@ -1,17 +1,21 @@
-import { PartialType } from "@nestjs/swagger";
+import { ApiProperty, PartialType } from "@nestjs/swagger";
 import { IsEmail, IsNotEmpty, IsOptional, IsString } from "class-validator";
 
 class CreateBrandDto{
+    @ApiProperty()
     @IsString()
     @IsNotEmpty()
     name: string;
 
+    @ApiProperty()
     @IsString()
     website: string;
 
+    @ApiProperty()
     @IsString()
     description: string;
 
+    @ApiProperty()
     @IsEmail()
     email: string;
 }
