@@ -1,5 +1,5 @@
 import { ConflictException } from "@nestjs/common";
-import { IUserRepo } from "src/core/businesses/user/user.schema.repo";
+import { IUserRepository } from "src/core/businesses/user/user.schema.repo";
 import { SignUpLocalDto } from "src/core/contracts/auth/auth.dto";
 import { IAuthService } from "src/core/contracts/auth/auth.services";
 import {User} from "../core/businesses/user/user.model";
@@ -7,7 +7,7 @@ import { UpdatePasswordDto } from "src/core/businesses/user/user.dto";
 
 export class AuthUseCases {
     constructor(
-        private readonly userRepository: IUserRepo,
+        private readonly userRepository: IUserRepository,
         private readonly authService: IAuthService
         ){}
 

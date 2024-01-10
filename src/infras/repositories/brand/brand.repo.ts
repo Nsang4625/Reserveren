@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { IBrandRepo } from 'src/core/businesses/brand/brand.scheme.repo';
+import { IBrandRepository } from 'src/core/businesses/brand/brand.scheme.repo';
 import { BrandEntity } from './brand.entity';
 import { Repository } from 'typeorm';
 import { Brand } from 'src/core/businesses/brand/brand.model';
 
 @Injectable()
-export class BrandRepository implements IBrandRepo {
+export class BrandRepository implements IBrandRepository {
     constructor(@InjectRepository(BrandEntity) private readonly brands: Repository<BrandEntity>) {}
     async getAll(): Promise<Brand[]> {
         return await this.brands.find();

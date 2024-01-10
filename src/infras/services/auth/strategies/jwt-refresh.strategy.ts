@@ -3,7 +3,7 @@ import {Injectable, UseFilters} from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import * as process from "process";
-import { AuthStrategiesService } from '../auth-strategies.services';
+import { AuthStrategiesService } from '../auth-strategies.service';
 
 
 @Injectable()

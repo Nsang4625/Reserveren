@@ -5,7 +5,7 @@ import { Injectable} from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 
 @Injectable()
-export class AuthServices implements IAuthService{
+export class AuthService implements IAuthService{
     constructor(
         private readonly users: UserRepository,
         private readonly jwtService: JwtService

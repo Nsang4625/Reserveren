@@ -1,6 +1,6 @@
 import { User } from './user.model';
 
-export abstract class IUserRepo{
+export abstract class IUserRepository{
     abstract insert(user: User): Promise<User>;
     abstract update(id: string, payload: any): Promise<User>;
     abstract findByEmail(email: string): Promise<User>;

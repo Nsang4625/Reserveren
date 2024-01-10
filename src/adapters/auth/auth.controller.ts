@@ -1,9 +1,9 @@
 import {Body, Controller, Get, Post, Req, UseGuards} from '@nestjs/common';
 import {  SignUpLocalDto } from 'src/core/contracts/auth/auth.dto';
-import { LocalAuthGuard } from 'src/infras/guards/local-auth.guards';
+import { LocalAuthGuard } from 'src/infras/guards/local-auth.guard';
 import { AuthUseCases } from 'src/usecases/auth.usecases';
-import {GoogleAuthGuard} from "../../infras/guards/google-auth.guards";
-import {JwtRefreshTokenGuards} from "../../infras/guards/jwt-refresh-auth.guards";
+import {GoogleAuthGuard} from "../../infras/guards/google-auth.guard";
+import {JwtRefreshTokenGuard} from "../../infras/guards/jwt-refresh-auth.guard";
 import { UpdatePasswordDto } from 'src/core/businesses/user/user.dto';
 
 @Controller('auth')
@@ -33,7 +33,7 @@ export class AuthController {
         const { user } = request;
         return this.authUseCases.loginWithGoogleStrategy(user);
     }
-    @UseGuards(JwtRefreshTokenGuards)
+    @UseGuards(JwtRefreshTokenGuard)
     @Post('/refresh')
     async refreshToken(@Req() request: any){
         const { user } = request;

@@ -2,8 +2,8 @@ import { Module } from '@nestjs/common';
 import { AuthController } from './auth.controller';
 import { AuthUseCases } from 'src/usecases/auth.usecases';
 import { UserRepository } from 'src/infras/repositories/user/user.repo';
-import { AuthServiceModule } from '../../infras/services/auth/auth.services.module';
-import { AuthServices } from 'src/infras/services/auth/auth.services';
+import { AuthServiceModule } from '../../infras/services/auth/auth.service.module';
+import { AuthService } from 'src/infras/services/auth/auth.service';
 import {UserRepoModule} from "../../infras/repositories/user/user.repo.module";
 
 @Module({
@@ -12,8 +12,8 @@ import {UserRepoModule} from "../../infras/repositories/user/user.repo.module";
     providers: [
         {
             provide: AuthUseCases,
-            inject:[UserRepository, AuthServices],
-            useFactory: (userRepo: UserRepository, authService: AuthServices) => new AuthUseCases(userRepo, authService)
+            inject:[UserRepository, AuthService],
+            useFactory: (userRepo: UserRepository, authService: AuthService) => new AuthUseCases(userRepo, authService)
         }
     ],
 })
