@@ -12,12 +12,11 @@ export class LocalStrategy extends PassportStrategy(Strategy){
         });
     }
     // validate auto fetch these two fields from request body
-    async validate(email: string, password: string, done: any){
+    async validate(email: string, password: string){
         const user = await this.authServices.getAuthenticatedUser(email, password);
         if(!user){
             throw new UnauthorizedException();
         }
-        done(null, user);
-        //return user;
+        return user;
     }
 }
