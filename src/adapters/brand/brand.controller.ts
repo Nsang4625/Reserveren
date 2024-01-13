@@ -1,4 +1,4 @@
-import {Body, Controller, Get, Param, ParseIntPipe, Patch, Post, Delete, UseGuards} from "@nestjs/common";
+import {Body, Controller, Get, Param, ParseIntPipe, Patch, Post, Delete, UseGuards, Req} from "@nestjs/common";
 import { Brand } from "src/core/businesses/brand/brand.model";
 import { CreateBrandDto, UpdateBrandDto } from "src/core/businesses/brand/brand.dto";
 import { BrandUseCases } from "src/usecases/brand.usecases";
@@ -15,9 +15,11 @@ export class BrandController {
     async findAll(): Promise<Brand[]> {
         return this.brandUseCases.getAll();
     }
-    @Post()
-    async create(@Body() createBrandDto: CreateBrandDto): Promise<Brand> {
-        return this.brandUseCases.create(createBrandDto);
+    @Post('/create')
+    @UseGuards(JwtAccessTokenGuard)
+    async create(@Body() createBrandDto: CreateBrandDto, @Req() request): Promise<Brand> {
+        const user = request.user;
+        return this.brandUseCases.create(createBrandDto, user);
     }
     @Patch(':id')
     async update(@Body() updateBrandDto: UpdateBrandDto, @Param('id', ParseIntPipe) id: number): Promise<Brand> {
