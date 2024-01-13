@@ -1,6 +1,7 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, JoinColumn } from 'typeorm';
+import { BrandUser } from './brands-user.entity';
 
-@Entity()
+@Entity({ name: 'brand'})
 class Brands {
   @PrimaryGeneratedColumn({ type: 'int' })
   id: number;
@@ -16,6 +17,9 @@ class Brands {
 
   @Column({ type: 'varchar' })
   email: string;
+
+  @OneToMany(() => BrandUser, brandUser => brandUser.brand)
+  brandUser?: BrandUser[]
 }
 
 export { Brands as BrandEntity }

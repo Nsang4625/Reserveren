@@ -1,6 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, JoinColumn } from 'typeorm';
+import { BrandUser } from '../brand/brands-user.entity';
 
-@Entity()
+@Entity({ name: 'user'})
 export class Users {
     @PrimaryGeneratedColumn('uuid')
     id: string;
@@ -14,8 +15,11 @@ export class Users {
     @Column({ nullable: true})
     password: string;
 
-    @Column({ nullable: true})
+    @Column({ nullable: true, name: 'refresh_token'})
     refreshToken: string;
+
+    @OneToMany(() => BrandUser, brandUser => brandUser.user)
+    brandUser: BrandUser[];
 }
 
 export { Users as UserEntity };
