@@ -31,6 +31,13 @@ export class BrandRepository implements IBrandRepository {
         .execute();
         return this.toBrand(result);
     }
+    async addStaff(user: User, brand: Brand): Promise<void> {
+        await this.brands.createQueryBuilder()
+        .insert()
+        .into('brand_user')
+        .values([{ user, role: 'staff', brand }])
+        .execute();
+    }
     async update(id: number, brand: any): Promise<Brand> {
         await this.brands.update(id, {
             ...brand

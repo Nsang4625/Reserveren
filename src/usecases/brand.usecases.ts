@@ -3,9 +3,14 @@ import { IBrandRepository } from 'src/core/businesses/brand/brand.scheme.repo';
 import { CreateBrandDto, UpdateBrandDto } from '../core/businesses/brand/brand.dto';
 import { BrandEntity } from 'src/infras/repositories/brand/brand.entity';
 import { User } from 'src/core/businesses/user/user.model';
+import { IUserRepository } from 'src/core/businesses/user/user.schema.repo';
+import { BadRequestException } from '@nestjs/common';
 
 export class BrandUseCases {
-    constructor(private brandRepository: IBrandRepository) {}
+    constructor(
+        private brandRepository: IBrandRepository,
+        private userRepository: IUserRepository
+        ) {}
     async getAll(): Promise<Brand[]> {
         return await this.brandRepository.getAll();
     }
@@ -25,5 +30,16 @@ export class BrandUseCases {
     }
     async delete(id: number): Promise<void> {
         return await this.brandRepository.delete(id);
+    }
+    async addStaff(userEmail: string, brandId: number): Promise<void>{
+        const user = await this.userRepository.findByEmail(userEmail);
+        if(!user){
+            throw new BadRequestException('User not found');
+        }
+        const brand = await this.brandRepository.getOne(brandId);
+        if(!brand){
+            throw new BadRequestException('Brand not found');
+        }
+        await this.brandRepository.addStaff(user, brand);
     }
 }
