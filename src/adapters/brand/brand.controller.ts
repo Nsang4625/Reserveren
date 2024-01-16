@@ -1,6 +1,6 @@
 import {Body, Controller, Get, Param, ParseIntPipe, Patch, Post, Delete, UseGuards, Req} from "@nestjs/common";
 import { Brand } from "src/core/businesses/brand/brand.model";
-import { AddStaffDto, CreateBrandDto, UpdateBrandDto } from "src/core/businesses/brand/brand.dto";
+import { AddStaffDto, CreateBrandDto, RemoveStaffDto, UpdateBrandDto } from "src/core/businesses/brand/brand.dto";
 import { BrandUseCases } from "src/usecases/brand.usecases";
 import { ApiTags } from "@nestjs/swagger";
 import {JwtAccessTokenGuard} from "../../infras/guards/jwt-auth.guard";
@@ -35,5 +35,11 @@ export class BrandController {
     @UseGuards(JwtAccessTokenGuard, OwnerRoleGuard)
     async addStaff(@Param('id', ParseIntPipe) id: number, @Body() addStaffDto: AddStaffDto): Promise<void> {
         return this.brandUseCases.addStaff(addStaffDto.email, id);
+    }
+
+    @Delete('/:id/remove-staff/')
+    @UseGuards(JwtAccessTokenGuard, OwnerRoleGuard)
+    async removeStaff(@Param('id', ParseIntPipe) id: number, @Body() removeStaffDto: RemoveStaffDto): Promise<void> {
+        return this.brandUseCases.removeStaff(removeStaffDto.email, id);
     }
 }

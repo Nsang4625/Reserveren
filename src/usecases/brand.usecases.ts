@@ -42,4 +42,15 @@ export class BrandUseCases {
         }
         await this.brandRepository.addStaff(user, brand);
     }
+    async removeStaff(userEmail: string, brandId: number): Promise<void>{
+        const user = await this.userRepository.findByEmail(userEmail);
+        if(!user){
+            throw new BadRequestException('User not found');
+        }
+        const brand = await this.brandRepository.getOne(brandId);
+        if(!brand){
+            throw new BadRequestException('Brand not found');
+        }
+        await this.brandRepository.removeStaff(user, brand);
+    }
 }

@@ -38,6 +38,13 @@ export class BrandRepository implements IBrandRepository {
         .values([{ user, role: 'staff', brand }])
         .execute();
     }
+    async removeStaff(user: User, brand: Brand): Promise<void> {
+        await this.brands.createQueryBuilder()
+        .delete()
+        .from('brand_user')
+        .where('brand_user.brand_id = :brandId AND brand_user.user_id = :userId', { brandId: brand.id, userId: user.id })
+        .execute();
+    }
     async update(id: number, brand: any): Promise<Brand> {
         await this.brands.update(id, {
             ...brand

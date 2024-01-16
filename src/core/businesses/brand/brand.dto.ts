@@ -34,4 +34,11 @@ class AddStaffDto{
     email: string;
 }
 
-export { CreateBrandDto, UpdateBrandDto, AddStaffDto };
+class RemoveStaffDto{
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    email: string;
+}
+
+export { CreateBrandDto, UpdateBrandDto, AddStaffDto, RemoveStaffDto };

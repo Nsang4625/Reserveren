@@ -8,4 +8,5 @@ export abstract class IBrandRepository {
   abstract update(id: number, brand: any): Promise<Brand>;
   abstract delete(id: number): Promise<void>;
   abstract addStaff(user: User, brand: Brand): Promise<void>;
+  abstract removeStaff(user: User, brand: Brand): Promise<void>;
 }
