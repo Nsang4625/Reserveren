@@ -8,7 +8,11 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   configSwagger(app);
   app.useGlobalPipes(new ValidationPipe(
-    { whitelist: true }
+    { 
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      forbidUnknownValues: true,
+    }
   ));
   app.setGlobalPrefix('api');
   await app.listen(3000);
