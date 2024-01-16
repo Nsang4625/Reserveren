@@ -27,4 +27,18 @@ class UpdateBrandDto extends PartialType(CreateBrandDto){
     email?: string;
 }
 
-export { CreateBrandDto, UpdateBrandDto };
+class AddStaffDto{
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    email: string;
+}
+
+class RemoveStaffDto{
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    email: string;
+}
+
+export { CreateBrandDto, UpdateBrandDto, AddStaffDto, RemoveStaffDto };

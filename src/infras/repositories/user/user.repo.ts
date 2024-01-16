@@ -37,4 +37,12 @@ export class UserRepository implements IUserRepository {
             }
         })
     }
+    async findByIdWithBrand(id: string): Promise<any> {
+        return this.users.findOne({
+            where: {
+                id,
+            },
+            relations: ['brandUser']
+        })
+    }
 }
