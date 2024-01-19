@@ -5,6 +5,7 @@ import { BrandEntity } from './brand.entity';
 import { Repository } from 'typeorm';
 import { Brand } from 'src/core/businesses/brand/brand.model';
 import { User } from 'src/core/businesses/user/user.model';
+import { Hotel } from 'src/core/businesses/hotel/hotel.model';
 
 @Injectable()
 export class BrandRepository implements IBrandRepository {
@@ -75,5 +76,14 @@ export class BrandRepository implements IBrandRepository {
             website: brand.website,
             email: brand.email
         }
+    }
+    async getHotelsOfThisBrand(brandId: number): Promise<Hotel[]> {
+        const brand = await this.brands.findOne({
+            where: {
+                id: brandId
+            },
+            relations: ['hotel']
+        });
+        return brand.hotel;
     }
 }

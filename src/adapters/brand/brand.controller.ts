@@ -5,6 +5,7 @@ import { BrandUseCases } from "src/usecases/brand.usecases";
 import { ApiTags } from "@nestjs/swagger";
 import {JwtAccessTokenGuard} from "../../infras/guards/jwt-auth.guard";
 import { OwnerRoleGuard } from "src/infras/guards/owner-role.guard";
+import { Hotel } from "src/core/businesses/hotel/hotel.model";
 
 @Controller("/brands")
 @ApiTags('brands')
@@ -41,5 +42,9 @@ export class BrandController {
     @UseGuards(JwtAccessTokenGuard, OwnerRoleGuard)
     async removeStaff(@Param('id', ParseIntPipe) id: number, @Body() removeStaffDto: RemoveStaffDto): Promise<void> {
         return this.brandUseCases.removeStaff(removeStaffDto.email, id);
+    }
+    @Get('/:id/hotels')
+    async getHotels(@Param('id', ParseIntPipe) id: number): Promise<Hotel[]> {
+        return this.brandUseCases.getHotelsOfThisBrand(id);
     }
 }

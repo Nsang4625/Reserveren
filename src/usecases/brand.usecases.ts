@@ -5,6 +5,7 @@ import { BrandEntity } from 'src/infras/repositories/brand/brand.entity';
 import { User } from 'src/core/businesses/user/user.model';
 import { IUserRepository } from 'src/core/businesses/user/user.schema.repo';
 import { BadRequestException } from '@nestjs/common';
+import { Hotel } from 'src/core/businesses/hotel/hotel.model';
 
 export class BrandUseCases {
     constructor(
@@ -52,5 +53,8 @@ export class BrandUseCases {
             throw new BadRequestException('Brand not found');
         }
         await this.brandRepository.removeStaff(user, brand);
+    }
+    async getHotelsOfThisBrand(brandId: number): Promise<Hotel[]> {
+        return await this.brandRepository.getHotelsOfThisBrand(brandId);
     }
 }

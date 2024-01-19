@@ -1,3 +1,4 @@
+import { Hotel } from '../hotel/hotel.model';
 import { User } from '../user/user.model';
 import { Brand } from './brand.model';
 
@@ -9,4 +10,5 @@ export abstract class IBrandRepository {
   abstract delete(id: number): Promise<void>;
   abstract addStaff(user: User, brand: Brand): Promise<void>;
   abstract removeStaff(user: User, brand: Brand): Promise<void>;
+  abstract getHotelsOfThisBrand(brandId: number): Promise<Hotel[]>;
 }
