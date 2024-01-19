@@ -1,5 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany, JoinColumn } from 'typeorm';
 import { BrandUser } from './brands-user.entity';
+import { HotelEntity } from '../hotel/hotel.entity';
 
 @Entity({ name: 'brand'})
 class Brands {
@@ -20,6 +21,9 @@ class Brands {
 
   @OneToMany(() => BrandUser, brandUser => brandUser.brand)
   brandUser?: BrandUser[]
+
+  @OneToMany(() => HotelEntity, hotel => hotel.brand)
+  hotel: HotelEntity[]
 }
 
 export { Brands as BrandEntity }

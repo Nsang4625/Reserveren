@@ -67,7 +67,7 @@ export class BrandRepository implements IBrandRepository {
             email: brandE.email
         }
     }
-    private toBrandEntity(brand: Brand): BrandEntity {
+    private toBrandEntity(brand: Brand): any {
         return {
             id: brand.id,
             name: brand.name,
