@@ -1,4 +1,4 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiProperty, OmitType, PartialType } from "@nestjs/swagger";
 import { IsNotEmpty } from "class-validator";
 
 
@@ -27,3 +27,5 @@ export class CreateHotelDto{
     @IsNotEmpty()
     brandId: number;
 }
+
+export class UpdateHotelDto extends PartialType(CreateHotelDto){}

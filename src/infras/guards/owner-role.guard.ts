@@ -8,7 +8,7 @@ export class OwnerRoleGuard implements CanActivate {
     ){}
     async canActivate(context: ExecutionContext): Promise<boolean> {
         const request = context.switchToHttp().getRequest();
-        const brandId = request.params.id || request.body.brandId;
+        const brandId = request.body.brandId ? request.body.brandId : request.params.id;
         const user = await this.userRepository.findByIdWithBrand(request.user.id);
         for(let i = 0; i < user.brandUser.length; i++){
             if(user.brandUser[i].role === 'owner' && user.brandUser[i].brandId === Number(brandId) )

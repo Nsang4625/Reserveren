@@ -1,6 +1,6 @@
 import { BadRequestException } from "@nestjs/common";
 import { IBrandRepository } from "src/core/businesses/brand/brand.scheme.repo";
-import { CreateHotelDto } from "src/core/businesses/hotel/hotel.dto";
+import { CreateHotelDto, UpdateHotelDto } from "src/core/businesses/hotel/hotel.dto";
 import { IHotelRepository } from "src/core/businesses/hotel/hotel.schema.repo";
 import { IAddressService } from "src/core/contracts/address/address.service";
 
@@ -19,5 +19,12 @@ export class HotelUseCases {
             address
         }, brand);
         return hotel;
+    }
+    async updateHotel(id: number, updateHotelDto: UpdateHotelDto){
+        await this.hotelRepository.updateHotel(id , updateHotelDto);       
+    }
+
+    async deleteHotel(id: number){
+        await this.hotelRepository.deleteHotel(id);
     }
 }

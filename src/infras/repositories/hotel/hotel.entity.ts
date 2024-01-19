@@ -24,6 +24,9 @@ export class HotelEntity {
     @Column({ type: 'varchar'})
     name: string;
 
+    @Column({ name: 'brand_id', type: 'int'})
+    brandId: number;
+    
     @ManyToOne(() => BrandEntity, brand => brand.hotel)
     @JoinColumn({ name: 'brand_id'})
     brand: BrandEntity;
