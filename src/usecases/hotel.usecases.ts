@@ -21,7 +21,7 @@ export class HotelUseCases {
         return hotel;
     }
     async updateHotel(id: number, updateHotelDto: UpdateHotelDto){
-        await this.hotelRepository.updateHotel(id , updateHotelDto);       
+        return await this.hotelRepository.updateHotel(id , updateHotelDto);       
     }
 
     async deleteHotel(id: number){
