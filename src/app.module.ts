@@ -9,6 +9,7 @@ import { APP_FILTER } from '@nestjs/core';
 import { GlobalExceptionFilter } from './infras/filters/global-exception.filter';
 import {AuthModule} from "./adapters/auth/auth.module";
 import { HotelModule } from './adapters/hotel/hotel.module';
+import { RoomModule } from './adapters/room/room.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { HotelModule } from './adapters/hotel/hotel.module';
     BrandModule,
     AuthModule,
     HotelModule,
+    RoomModule
   ],
   controllers: [AppController],
   providers: [
