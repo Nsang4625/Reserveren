@@ -45,5 +45,10 @@ export class HotelRepository implements IHotelRepository{
         await this.hotels.delete(id);
         return ;
     }
-
+    async getHotelWithBrand(id: number): Promise<any> {
+        return await this.hotels.findOne({
+            where: { id },
+            relations: ['brand']
+        });
+    }
 }
