@@ -1,5 +1,6 @@
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { BrandEntity } from "../brand/brand.entity";
+import { RoomEntity } from "../room/room.entity";
 
 @Entity('hotel')
 export class HotelEntity {
@@ -32,4 +33,7 @@ export class HotelEntity {
     brand: BrandEntity;
     // @Column()
     // thumbnail: string;
+
+    @OneToMany(() => RoomEntity, (room) => room.hotel)
+    room: RoomEntity[];
 }
