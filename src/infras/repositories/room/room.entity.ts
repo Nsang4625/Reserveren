@@ -1,5 +1,6 @@
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { HotelEntity } from "../hotel/hotel.entity";
+import { RoomOptionEntity } from "../room-option/room-option.entity";
 
 
 @Entity('room')
@@ -17,4 +18,6 @@ export class RoomEntity {
     @JoinColumn({ name: 'hotel_id'})
     hotel: HotelEntity
 
+    @OneToMany(() => RoomOptionEntity, (roomOption) => roomOption.room)
+    roomOption: RoomOptionEntity[]
 }
