@@ -10,6 +10,7 @@ import { GlobalExceptionFilter } from './infras/filters/global-exception.filter'
 import {AuthModule} from "./adapters/auth/auth.module";
 import { HotelModule } from './adapters/hotel/hotel.module';
 import { RoomModule } from './adapters/room/room.module';
+import { RoomOptionModule } from './adapters/room-option/room-option.module';
 
 @Module({
   imports: [
@@ -29,7 +30,8 @@ import { RoomModule } from './adapters/room/room.module';
     BrandModule,
     AuthModule,
     HotelModule,
-    RoomModule
+    RoomModule,
+    RoomOptionModule
   ],
   controllers: [AppController],
   providers: [
