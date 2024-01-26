@@ -11,6 +11,7 @@ import {AuthModule} from "./adapters/auth/auth.module";
 import { HotelModule } from './adapters/hotel/hotel.module';
 import { RoomModule } from './adapters/room/room.module';
 import { RoomOptionModule } from './adapters/room-option/room-option.module';
+import { BenefitModule } from './adapters/benefit/benefit.module';
 
 @Module({
   imports: [
@@ -31,7 +32,8 @@ import { RoomOptionModule } from './adapters/room-option/room-option.module';
     AuthModule,
     HotelModule,
     RoomModule,
-    RoomOptionModule
+    RoomOptionModule,
+    BenefitModule
   ],
   controllers: [AppController],
   providers: [
