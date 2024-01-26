@@ -1,6 +1,8 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { BrandEntity } from "../brand/brand.entity";
 import { RoomEntity } from "../room/room.entity";
+import { PolymorphicChildren } from "typeorm-polymorphic";
+import { BenefitEntity } from "../benefit/benefit.entity";
 
 @Entity('hotel')
 export class HotelEntity {
@@ -36,4 +38,7 @@ export class HotelEntity {
 
     @OneToMany(() => RoomEntity, (room) => room.hotel)
     room: RoomEntity[];
+
+    @PolymorphicChildren(() => BenefitEntity, { eager: false })
+    benefit: BenefitEntity[];
 }
