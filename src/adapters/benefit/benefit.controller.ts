@@ -47,7 +47,10 @@ export class BenefitController {
     }
     @Delete('/rooms/:roomId/benefits/:benefitId')
     @UseGuards(JwtAccessTokenGuard, RoomOwnershipGuard)
-    async deleteRoomBenefit(){
-
+    async deleteRoomBenefit(
+        @Param('benefitId', ParseIntPipe) benefitId: number,
+        @Param('roomId', ParseIntPipe) roomId: number
+    ){
+        return this.benefitUseCases.deleteRoomBenefit(benefitId, roomId);
     }
 }

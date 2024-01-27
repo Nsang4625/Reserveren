@@ -39,5 +39,13 @@ export class BenefitUseCases {
     async getRoomBenefits(roomId: number){
         return this.benefitRepository.findAllOfRoom(roomId);
     }
-    async deleteRoomBenefit(){}
+    async deleteRoomBenefit(
+        benefitId: number,
+        roomId: number
+    ){
+        const benefit = await this.benefitRepository.findById(benefitId);
+        if(!benefit) throw new BadRequestException('Benefit not found');
+        if(benefit.owner.id!== roomId) throw new BadRequestException('Not owner of this benefit');
+        this.benefitRepository.delete(benefitId);
+    }
 }
