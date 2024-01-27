@@ -36,6 +36,8 @@ export class BenefitUseCases {
         }
         return this.benefitRepository.create<Room>(newBenefit, room);
     }
-    async getRoomBenefits(){}
+    async getRoomBenefits(roomId: number){
+        return this.benefitRepository.findAllOfRoom(roomId);
+    }
     async deleteRoomBenefit(){}
 }

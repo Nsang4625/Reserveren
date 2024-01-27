@@ -32,6 +32,13 @@ export class BenefitRepository implements IBenefitRepository {
             .where('benefit.entityId = :id AND benefit.entityType = :entityType', { id, entityType: 'HotelEntity' })
             .getRawMany();
     }
+    async findAllOfRoom(id: number): Promise<Benefit[]> {
+        return await this.benefits.createQueryBuilder('benefit')
+            .select(['id', 'value'])
+            .where('benefit.entityId = :id AND benefit.entityType = :entityType', { id, entityType: 'RoomEntity' })
+            .getRawMany();
+    }
+
     async delete(id: number): Promise<void> {
         await this.benefits.delete(id);
         return;

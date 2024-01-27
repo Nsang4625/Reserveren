@@ -7,5 +7,6 @@ export abstract class IBenefitRepository {
     // abstract update(id: number, benefit: Benefit): Promise<Benefit>;
     abstract delete(id: number): Promise<void>;
     abstract findAllOfHotel(hotelId: number): Promise<Benefit[]>;
+    abstract findAllOfRoom(roomId: number): Promise<Benefit[]>;
     abstract findById(id: number): Promise<any>;
 }

@@ -37,8 +37,8 @@ export class BenefitController {
         return this.benefitUseCases.addRoomBenefit(createBenefitDto, roomId);
     }
     @Get('/rooms/:roomId/benefits')
-    async getRoomBenefits(){
-
+    async getRoomBenefits(@Param('roomId', ParseIntPipe) roomId: number){
+        return this.benefitUseCases.getRoomBenefits(roomId);
     }
     @Patch('/rooms/:roomId/benefits/:benefitId')
     @UseGuards(JwtAccessTokenGuard, RoomOwnershipGuard)
