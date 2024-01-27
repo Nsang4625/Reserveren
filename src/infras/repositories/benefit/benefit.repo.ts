@@ -36,5 +36,11 @@ export class BenefitRepository implements IBenefitRepository {
         await this.benefits.delete(id);
         return;
     }
-
+    async findById(id: number): Promise<any> {
+        return await this.benefits.findOne({
+            where: {
+                id
+            }
+        });
+    }
 }

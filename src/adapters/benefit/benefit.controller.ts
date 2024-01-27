@@ -24,8 +24,10 @@ export class BenefitController {
     }
     @Delete('/benefits/:benefitId')
     @UseGuards(JwtAccessTokenGuard, HotelOwnershipGuard)
-    async deleteHotelBenefit(){
-
+    async deleteHotelBenefit(
+        @Param('benefitId', ParseIntPipe) benefitId: number,
+        @Param('hotelId', ParseIntPipe) hotelId: number){
+        return this.benefitUseCases.deleteHotelBenefit(benefitId, hotelId);
     }
 
     @Post('/rooms/:roomId/benefits')
