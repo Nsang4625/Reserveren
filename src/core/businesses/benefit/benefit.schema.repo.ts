@@ -6,6 +6,6 @@ export abstract class IBenefitRepository {
     abstract create<T extends Hotel | Room>(benefit: Benefit, owner: T): Promise<Benefit>;
     // abstract update(id: number, benefit: Benefit): Promise<Benefit>;
     //abstract delete(id: number): Promise<void>;
-    // abstract findAll(): Promise<Benefit[]>;
+    abstract findAllOfHotel(hotelId: number): Promise<Benefit[]>;
     // abstract findById(id: number): Promise<Benefit>;
 }

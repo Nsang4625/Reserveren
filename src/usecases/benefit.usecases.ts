@@ -16,7 +16,9 @@ export class BenefitUseCases {
         const newBenefit = { ...createBenefitDto }
         return this.benefitRepository.create<Hotel>(newBenefit, hotel);
     }
-    async getHotelBenefits(){}
+    async getHotelBenefits(hotelId: number){
+        return this.benefitRepository.findAllOfHotel(hotelId)
+    }
 //    async updateHotelBenefit(){}
     async deleteHotelBenefit(){}
     async addRoomBenefit(){}
