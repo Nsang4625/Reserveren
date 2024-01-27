@@ -8,20 +8,18 @@ import { BenefitUseCases } from "src/usecases/benefit.usecases";
 @Controller('brands/:brandId/hotels/:hotelId')
 export class BenefitController {
     constructor(private readonly benefitUseCases: BenefitUseCases){}
+    
     @Post('/benefits')
     @UseGuards(JwtAccessTokenGuard, HotelOwnershipGuard)
     async addHotelBenefit(@Body() createBenefitDto: CreateBenefitDto, @Param('hotelId') hotelId: number){
         return this.benefitUseCases.addHotelBenefit(createBenefitDto, hotelId);
     }
+
     @Get('/benefits')
     async getHotelBenefits(@Param('hotelId', ParseIntPipe) hotelId: number){
         return this.benefitUseCases.getHotelBenefits(hotelId);
     }
-    @Patch('/benefits/:benefitId')
-    @UseGuards(JwtAccessTokenGuard, HotelOwnershipGuard)
-    async updateHotelBenefit(){
-
-    }
+    
     @Delete('/benefits/:benefitId')
     @UseGuards(JwtAccessTokenGuard, HotelOwnershipGuard)
     async deleteHotelBenefit(
@@ -36,15 +34,12 @@ export class BenefitController {
     @Param('roomId', ParseIntPipe) roomId: number){
         return this.benefitUseCases.addRoomBenefit(createBenefitDto, roomId);
     }
+
     @Get('/rooms/:roomId/benefits')
     async getRoomBenefits(@Param('roomId', ParseIntPipe) roomId: number){
         return this.benefitUseCases.getRoomBenefits(roomId);
     }
-    @Patch('/rooms/:roomId/benefits/:benefitId')
-    @UseGuards(JwtAccessTokenGuard, RoomOwnershipGuard)
-    async updateRoomBenefit(){
 
-    }
     @Delete('/rooms/:roomId/benefits/:benefitId')
     @UseGuards(JwtAccessTokenGuard, RoomOwnershipGuard)
     async deleteRoomBenefit(
