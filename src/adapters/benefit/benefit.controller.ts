@@ -32,8 +32,9 @@ export class BenefitController {
 
     @Post('/rooms/:roomId/benefits')
     @UseGuards(JwtAccessTokenGuard, RoomOwnershipGuard)
-    async addRoomBenefit(@Body() createBenefitDto: CreateBenefitDto){
-
+    async addRoomBenefit(@Body() createBenefitDto: CreateBenefitDto,
+    @Param('roomId', ParseIntPipe) roomId: number){
+        return this.benefitUseCases.addRoomBenefit(createBenefitDto, roomId);
     }
     @Get('/rooms/:roomId/benefits')
     async getRoomBenefits(){
